@@ -17,6 +17,9 @@ public class Employee {
     private String password;
     private int roleId;
 
+    public Employee() {
+    }
+
     public int getId() {
         return id;
     }
