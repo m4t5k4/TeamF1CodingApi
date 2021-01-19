@@ -14,7 +14,7 @@ public class Reservation {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private int persoonId;
-    private Date datum;
+    private Date date;
     private LocalTime startHour;
     private LocalTime endHour;
     private int amountPersons;
@@ -39,12 +39,12 @@ public class Reservation {
         this.persoonId = persoonId;
     }
 
-    public Date getDatum() {
-        return datum;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDatum(Date datum) {
-        this.datum = datum;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public LocalTime getStartHour() {
