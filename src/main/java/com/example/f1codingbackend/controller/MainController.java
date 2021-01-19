@@ -28,9 +28,9 @@ public class MainController {
     @Autowired
     PlaceRepository placeRepository;
 
-    @GetMapping("/start")
-    public String test() {
-        return "test";
+    @GetMapping("/")
+    public String home() {
+        return "home";
     }
 
     @PostConstruct
