@@ -7,9 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PlaceRepository extends JpaRepository<Place, Integer> {
-
+public interface PlaceRepository extends JpaRepository<Place, Long> {
     List<Place> findAll();
-    Place findById();
-    Place findByTableId();
+    //Place findById();
+    //Place findByTableId();
 }
