@@ -1,9 +1,8 @@
 package com.example.f1codingbackend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Location {
@@ -48,5 +47,16 @@ public class Location {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @OneToMany
+    private List<TableLocation> tableLocations = new ArrayList<>();
+
+    public List<TableLocation> getTableLocations() {
+        return tableLocations;
+    }
+
+    public void setTableLocations(List<TableLocation> tableLocations) {
+        this.tableLocations = tableLocations;
     }
 }

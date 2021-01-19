@@ -1,9 +1,6 @@
 package com.example.f1codingbackend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -77,5 +74,27 @@ public class Reservation {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @ManyToOne
+    private Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    @ManyToOne
+    private TableLocation tableLocation;
+
+    public TableLocation getTableLocation() {
+        return tableLocation;
+    }
+
+    public void setTableLocation(TableLocation tableLocation) {
+        this.tableLocation = tableLocation;
     }
 }

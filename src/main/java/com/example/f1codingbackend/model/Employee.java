@@ -1,9 +1,8 @@
 package com.example.f1codingbackend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -66,5 +65,16 @@ public class Employee {
 
     public void setRoleId(int roleId) {
         this.roleId = roleId;
+    }
+
+    @OneToMany
+    private List<Reservation> reservations = new ArrayList<>();
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }
