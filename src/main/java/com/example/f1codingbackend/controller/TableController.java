@@ -41,6 +41,17 @@ public class TableController {
         return tableRepository.findAll();
     }
 
+    @GetMapping("/tables/{appId}")
+    public TableLocation getTableByAppId(@PathVariable Integer appId){
+        return tableRepository.findById(appId);
+    }
+
+    @PostMapping("/tables")
+    public TableLocation addTable(@RequestBody TableLocation tableLocation) {
+        tableRepository.save(tableLocation);
+        return tableLocation;
+    }
+
 }
 
 
