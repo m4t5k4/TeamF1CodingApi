@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface TableRepository extends JpaRepository<TableLocation, Long> {
     List<TableLocation> findAll();
-    //Table findById();
-    //Table findByLocationId();
-    //Table findByName();
+    TableLocation findById(int id);
+    TableLocation findByLocationId(int id);
+    TableLocation findByName(String Name);
 }
