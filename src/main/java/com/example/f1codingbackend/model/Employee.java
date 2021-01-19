@@ -1,5 +1,7 @@
 package com.example.f1codingbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class Employee {
     }
 
     @OneToMany(mappedBy="employee")
+    @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
 
     public int getId() {
