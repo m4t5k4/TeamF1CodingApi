@@ -6,31 +6,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Table {
-
+public class TableLocation {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
-    private int Name;
+    private String name;
     private int locationId;
 
     public int getId() {
         return id;
     }
 
-    public Table() {
+    public TableLocation() {
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getName() {
-        return Name;
+    public String getName() {
+        return name;
     }
 
-    public void setName(int name) {
-        Name = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getLocationId() {
