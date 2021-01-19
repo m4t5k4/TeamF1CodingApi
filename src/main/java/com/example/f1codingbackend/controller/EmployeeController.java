@@ -18,8 +18,7 @@ public class EmployeeController {
         for (int i = 0 ; i < 10 ; i++)
         {
             Employee employee = new Employee();
-            employee.setFirstname("test " + i);
-            employee.setEmail("test" + i + "@mail.com");
+            employee.setEmail("test" + i + "@gmail.com");
             employee.setFirstname("Test" + i);
             employee.setLastname("Test" + i);
             employee.setPassword("test123");

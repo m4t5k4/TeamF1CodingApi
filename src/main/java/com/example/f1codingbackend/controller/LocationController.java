@@ -22,7 +22,6 @@ public class LocationController {
             location.setAddress(address_list[i]);
             location.setDescription("....");
             location.setName(name_list[i]);
-            System.out.println(location);
             locationRepository.save(location);
         }
 }
