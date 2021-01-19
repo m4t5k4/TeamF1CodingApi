@@ -1,5 +1,7 @@
 package com.example.f1codingbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +13,10 @@ public class TableLocation {
     private int id;
     private String name;
     @OneToMany(mappedBy="tableLocation")
+    @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
     @OneToMany(mappedBy="tableLocation")
+    @JsonIgnore
     private List<Place> places = new ArrayList<>();
     @ManyToOne
     private Location location;
