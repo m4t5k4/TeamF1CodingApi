@@ -6,13 +6,15 @@ import java.util.List;
 
 @Entity
 public class Location {
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private String name;
     private String address;
     private String description;
+
+    @OneToMany
+    private List<TableLocation> tableLocations = new ArrayList<>();
 
     public Location() {
     }
@@ -48,9 +50,6 @@ public class Location {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    @OneToMany
-    private List<TableLocation> tableLocations = new ArrayList<>();
 
     public List<TableLocation> getTableLocations() {
         return tableLocations;
