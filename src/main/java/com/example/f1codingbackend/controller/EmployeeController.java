@@ -2,6 +2,7 @@ package com.example.f1codingbackend.controller;
 
 import com.example.f1codingbackend.model.Employee;
 import com.example.f1codingbackend.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,11 +10,8 @@ import javax.annotation.PostConstruct;
 
 @RestController
 public class EmployeeController {
-    private EmployeeRepository employeeRepository;
-    public EmployeeController(EmployeeRepository employeeRepository)
-    {
-        this.employeeRepository = employeeRepository;
-    }
+    @Autowired
+    EmployeeRepository employeeRepository;
     @PostConstruct
     public void render()
     {
