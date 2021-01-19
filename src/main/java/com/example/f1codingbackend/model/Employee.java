@@ -19,6 +19,9 @@ public class Employee {
     public Employee() {
     }
 
+    @OneToMany
+    private List<Reservation> reservations = new ArrayList<>();
+
     public int getId() {
         return id;
     }
@@ -66,9 +69,6 @@ public class Employee {
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
-
-    @OneToMany
-    private List<Reservation> reservations = new ArrayList<>();
 
     public List<Reservation> getReservations() {
         return reservations;

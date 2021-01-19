@@ -6,11 +6,9 @@ import java.util.Date;
 
 @Entity
 public class Reservation {
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
-    private int persoonId;
     private Date date;
     private LocalTime startHour;
     private LocalTime endHour;
@@ -20,20 +18,18 @@ public class Reservation {
     public Reservation() {
     }
 
+    @ManyToOne
+    private Employee employee;
+
+    @ManyToOne
+    private TableLocation tableLocation;
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getPersoonId() {
-        return persoonId;
-    }
-
-    public void setPersoonId(int persoonId) {
-        this.persoonId = persoonId;
     }
 
     public Date getDate() {
@@ -76,9 +72,6 @@ public class Reservation {
         this.description = description;
     }
 
-    @ManyToOne
-    private Employee employee;
-
     public Employee getEmployee() {
         return employee;
     }
@@ -86,9 +79,6 @@ public class Reservation {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-
-    @ManyToOne
-    private TableLocation tableLocation;
 
     public TableLocation getTableLocation() {
         return tableLocation;
