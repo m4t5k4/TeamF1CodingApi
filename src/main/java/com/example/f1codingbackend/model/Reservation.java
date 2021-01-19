@@ -1,5 +1,7 @@
 package com.example.f1codingbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.Date;
@@ -19,6 +21,7 @@ public class Reservation {
     }
 
     @ManyToOne
+    @JsonIgnore
     private Employee employee;
 
     @ManyToOne

@@ -1,5 +1,7 @@
 package com.example.f1codingbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class TableLocation {
     @OneToMany(mappedBy="tableLocation")
     private List<Place> places = new ArrayList<>();
     @ManyToOne
+    @JsonIgnore
     private Location location;
 
     public int getId() {

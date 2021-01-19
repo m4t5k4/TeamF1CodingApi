@@ -17,16 +17,7 @@ public class EmployeeController {
     @PostConstruct
     public void render()
     {
-        for (int i = 0 ; i < 10 ; i++)
-        {
-            Employee employee = new Employee();
-            employee.setEmail("test" + i + "@gmail.com");
-            employee.setFirstname("Test" + i);
-            employee.setLastname("Test" + i);
-            employee.setPassword("test123");
-            employee.setRoleId(1);
-            employeeRepository.save(employee);
-        }
+
     }
 
     @GetMapping("/employee")
