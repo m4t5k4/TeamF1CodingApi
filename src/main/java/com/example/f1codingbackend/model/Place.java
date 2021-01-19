@@ -12,7 +12,7 @@ public class Place {
     private int id;
 
     @ManyToOne
-    private Place place;
+    private TableLocation tableLocation;
 
     public Place() {
     }
@@ -25,11 +25,11 @@ public class Place {
         this.id = id;
     }
 
-    public Place getPlace() {
-        return place;
+    public TableLocation getTableLocation() {
+        return tableLocation;
     }
 
-    public void setPlace(Place place) {
-        this.place = place;
+    public void setTableLocation(TableLocation tableLocation) {
+        this.tableLocation = tableLocation;
     }
 }

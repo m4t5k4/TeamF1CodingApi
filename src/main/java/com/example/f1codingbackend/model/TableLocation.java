@@ -12,7 +12,7 @@ public class TableLocation {
     private String name;
     @OneToMany(mappedBy="tableLocation")
     private List<Reservation> reservations = new ArrayList<>();
-    @OneToMany(mappedBy="place")
+    @OneToMany(mappedBy="tableLocation")
     private List<Place> places = new ArrayList<>();
     @ManyToOne
     private Location location;
