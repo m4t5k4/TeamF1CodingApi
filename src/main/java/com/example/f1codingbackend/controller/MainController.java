@@ -1,8 +1,6 @@
 package com.example.f1codingbackend.controller;
 
-import com.example.f1codingbackend.repository.LocationRepository;
-import com.example.f1codingbackend.repository.PlaceRepository;
-import com.example.f1codingbackend.repository.TableRepository;
+import com.example.f1codingbackend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +25,12 @@ public class MainController {
 
     @Autowired
     PlaceRepository placeRepository;
+
+    @Autowired
+    EmployeeRepository employeeRepository;
+
+    @Autowired
+    ReservationRepository reservationRepository;
 
     @GetMapping("/")
     public String home() {
@@ -66,5 +70,32 @@ public class MainController {
                 placeRepository.save(newplace);
             }
         }
+        if (employeeRepository.count()==0)
+        {
+            for (int i = 1 ; i < 10 ; i++)
+            {
+                Employee employee = new Employee();
+                employee.setEmail("test" + i + "@gmail.com");
+                employee.setFirstname("Test" + i);
+                employee.setLastname("Test" + i);
+                employee.setPassword("test123");
+                employee.setRoleId(1);
+                employeeRepository.save(employee);
+            }
+        }
+        if (reservationRepository.count()==0)
+        {
+            for (int i = 1 ; i < 10 ; i++)
+            {
+                Reservation reservation = new Reservation();
+                reservation.setDate(new java.util.Date());
+                reservation.setEmployee(employeeRepository.findById(1));
+                reservation.setAmountPersons(5);
+                reservation.setTableLocation(tableRepository.findById(1));
+                reservationRepository.save(reservation);
+            }
+        }
+
+
     }
 }
