@@ -19,7 +19,7 @@ public class Employee {
     public Employee() {
     }
 
-    @OneToMany
+    @OneToMany(mappedBy="employee")
     private List<Reservation> reservations = new ArrayList<>();
 
     public int getId() {

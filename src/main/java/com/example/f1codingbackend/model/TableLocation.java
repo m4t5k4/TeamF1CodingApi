@@ -10,9 +10,9 @@ public class TableLocation {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany
+    @OneToMany(mappedBy="tableLocation")
     private List<Reservation> reservations = new ArrayList<>();
-    @OneToMany
+    @OneToMany(mappedBy="place")
     private List<Place> places = new ArrayList<>();
     @ManyToOne
     private Location location;

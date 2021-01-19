@@ -13,7 +13,7 @@ public class Location {
     private String address;
     private String description;
 
-    @OneToMany
+    @OneToMany(mappedBy="location")
     private List<TableLocation> tableLocations = new ArrayList<>();
 
     public Location() {
