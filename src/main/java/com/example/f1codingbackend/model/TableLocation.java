@@ -10,7 +10,12 @@ public class TableLocation {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private String name;
-    private int locationId;
+    @OneToMany
+    private List<Reservation> reservations = new ArrayList<>();
+    @OneToMany
+    private List<Place> places = new ArrayList<>();
+    @ManyToOne
+    private Location location;
 
     public int getId() {
         return id;
@@ -31,17 +36,6 @@ public class TableLocation {
         this.name = name;
     }
 
-    public int getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
-    }
-
-    @OneToMany
-    private List<Reservation> reservations = new ArrayList<>();
-
     public List<Reservation> getReservations() {
         return reservations;
     }
@@ -50,9 +44,6 @@ public class TableLocation {
         this.reservations = reservations;
     }
 
-    @OneToMany
-    private List<Place> places = new ArrayList<>();
-
     public List<Place> getPlaces() {
         return places;
     }
@@ -60,9 +51,6 @@ public class TableLocation {
     public void setPlaces(List<Place> places) {
         this.places = places;
     }
-
-    @ManyToOne
-    private Location location;
 
     public Location getLocation() {
         return location;
