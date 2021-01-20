@@ -20,7 +20,6 @@ public class TableController {
     @Autowired
     private TableRepository tableRepository;
 
-
     @GetMapping("/tables")
     public List<TableLocation> getTables() {
         return tableRepository.findAll();
