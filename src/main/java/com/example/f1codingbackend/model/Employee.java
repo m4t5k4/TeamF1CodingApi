@@ -17,6 +17,7 @@ public class Employee {
     private String email;
     private String password;
     private int roleId;
+    private String token;
 
     public Employee() {
     }
@@ -71,6 +72,14 @@ public class Employee {
 
     public void setRoleId(int roleId) {
         this.roleId = roleId;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public List<Reservation> getReservations() {
