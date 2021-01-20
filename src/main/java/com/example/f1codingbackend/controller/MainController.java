@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalTime;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
@@ -91,11 +92,11 @@ public class MainController {
                 reservation.setDate(new java.util.Date());
                 reservation.setEmployee(employeeRepository.findById(1));
                 reservation.setAmountPersons(5);
+                reservation.setStartHour(LocalTime.of(8,10));
+                reservation.setEndHour(LocalTime.of(19,00));
                 reservation.setTableLocation(tableRepository.findById(1));
                 reservationRepository.save(reservation);
             }
         }
-
-
     }
 }

@@ -6,8 +6,7 @@ import com.example.f1codingbackend.repository.EmployeeRepository;
 import com.example.f1codingbackend.repository.ReservationRepository;
 import com.example.f1codingbackend.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -17,10 +16,43 @@ public class EmployeeController {
     @Autowired
     EmployeeRepository employeeRepository;
 
-    @GetMapping("/employee")
+    @GetMapping("/employees")
     public List<Employee> employees()
     {
         List<Employee> employeeList = employeeRepository.findAll();
         return  employeeList;
+    }
+
+    @GetMapping("/employees/{position}")
+    public Employee one(@PathVariable int position)
+    {
+        return employeeRepository.findById(position);
+    }
+
+    @PostMapping("/employees")
+    Employee add(@RequestBody Employee newEmployee)
+    {
+        employeeRepository.save(newEmployee);
+        return newEmployee;
+    }
+
+    @PutMapping("/employees/{position}")
+    public Employee replaceEmployee(@RequestBody Employee employee,@PathVariable int position)
+    {
+        Employee currentEmployee = employeeRepository.findById(position);
+        currentEmployee.setFirstname(employee.getFirstname());
+        currentEmployee.setLastname(employee.getLastname());
+        currentEmployee.setPassword(employee.getPassword());
+        currentEmployee.setRoleId(employee.getRoleId());
+        currentEmployee.setEmail(employee.getEmail());
+        employeeRepository.save(currentEmployee);
+        return currentEmployee;
+    }
+
+    @DeleteMapping("/employees/{position}")
+    public void deleteEmployee(@PathVariable int position)
+    {
+        Employee employee = employeeRepository.findById(position);
+        employeeRepository.delete(employee);
     }
 }

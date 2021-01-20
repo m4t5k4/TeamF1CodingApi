@@ -29,8 +29,6 @@ public class TableController {
     @Autowired
     private ReservationRepository reservationRepository;
 
-
-
     @GetMapping("/tables")
     public List<TableLocation> getTables() {
         return tableRepository.findAll();
