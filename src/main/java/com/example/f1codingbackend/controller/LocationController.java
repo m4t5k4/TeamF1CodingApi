@@ -11,5 +11,4 @@ import javax.annotation.PostConstruct;
 public class LocationController {
     @Autowired
     LocationRepository locationRepository;
-
 }
