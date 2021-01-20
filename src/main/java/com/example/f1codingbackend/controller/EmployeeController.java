@@ -6,6 +6,7 @@ import com.example.f1codingbackend.repository.EmployeeRepository;
 import com.example.f1codingbackend.repository.ReservationRepository;
 import com.example.f1codingbackend.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +16,8 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     EmployeeRepository employeeRepository;
+    @Autowired
+    ReservationRepository reservationRepository;
 
     @GetMapping("/employees")
     public List<Employee> employees()
@@ -53,6 +56,11 @@ public class EmployeeController {
     public void deleteEmployee(@PathVariable int position)
     {
         Employee employee = employeeRepository.findById(position);
+        List <Reservation> reservations = employee.getReservations();
+        for (Reservation reservation : reservations)
+        {
+            reservationRepository.delete(reservation);
+        }
         employeeRepository.delete(employee);
     }
 }
