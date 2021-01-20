@@ -12,6 +12,7 @@ public class TableLocation {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private String name;
+    private String zone;
     @OneToMany(mappedBy="tableLocation")
     @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
@@ -62,5 +63,13 @@ public class TableLocation {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public String getZone() {
+        return zone;
+    }
+
+    public void setZone(String zone) {
+        this.zone = zone;
     }
 }

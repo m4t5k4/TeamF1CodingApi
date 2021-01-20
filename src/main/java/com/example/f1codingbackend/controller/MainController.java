@@ -41,8 +41,8 @@ public class MainController {
     @PostConstruct
     public void fillDB(){
         if (locationRepository.count()==0) {
-            String[] address_list = {"2627  Hall Valley Drive", "2791  Buffalo Creek Road", "4976  Hayhurst Lane"};
-            String[] name_list = {"Office 1", "Office 2", "Office 3"};
+            String[] address_list = {"Kempische Steenweg 293, 3500 Hasselt", "Kempische Steenweg 293, 3500 Hasselt"};
+            String[] name_list = {"Corda campus 1", "Corda campus 2"};
             for (int i = 0; i < address_list.length; i++) {
                 Location location = new Location();
                 location.setAddress(address_list[i]);
@@ -52,12 +52,80 @@ public class MainController {
             }
         }
         if (tableRepository.count()==0){
-            String[] names = {"Table 1","Table 2","Table 3","Table 4"};
-            for (String name : names) {
-                int rand = new Random().nextInt(names.length-1)+1;
+            //tables zone A corda 1
+            for (int i = 1; i <= 4;i++) {
                 TableLocation newTable = new TableLocation();
-                newTable.setName(name);
-                newTable.setLocation(locationRepository.findById(rand));
+                newTable.setName("Table " + i);
+                newTable.setLocation(locationRepository.findById(1));
+                newTable.setZone("A");
+                tableRepository.save(newTable);
+            }
+            //tables zone B corda 1
+            for (int i = 1; i <= 5 ;i++) {
+                TableLocation newTable = new TableLocation();
+                newTable.setName("Table " + i);
+                newTable.setLocation(locationRepository.findById(1));
+                newTable.setZone("B");
+                tableRepository.save(newTable);
+            }
+            //tables zone C corda 1
+            for (int i = 1; i <= 4;i++) {
+                TableLocation newTable = new TableLocation();
+                newTable.setName("Table " + i);
+                newTable.setLocation(locationRepository.findById(1));
+                newTable.setZone("C");
+                tableRepository.save(newTable);
+            }
+            //tables zone D corda 1
+            for (int i = 1; i <= 4;i++) {
+                TableLocation newTable = new TableLocation();
+                newTable.setName("Table " + i);
+                newTable.setLocation(locationRepository.findById(1));
+                newTable.setZone("D");
+                tableRepository.save(newTable);
+            }
+            //tables zone E corda 1
+            for (int i = 1; i <= 3;i++) {
+                TableLocation newTable = new TableLocation();
+                newTable.setName("Table " + i);
+                newTable.setLocation(locationRepository.findById(1));
+                newTable.setZone("E");
+                tableRepository.save(newTable);
+            }
+
+            //tables zone A corda 2
+            for (int i = 1; i <= 3;i++) {
+                TableLocation newTable = new TableLocation();
+                newTable.setName("Table " + i);
+                newTable.setLocation(locationRepository.findById(2));
+                newTable.setZone("A");
+                tableRepository.save(newTable);
+            }
+
+            //tables zone B corda 2
+            for (int i = 1; i <= 3;i++) {
+                TableLocation newTable = new TableLocation();
+                newTable.setName("Table " + i);
+                newTable.setLocation(locationRepository.findById(2));
+                newTable.setZone("B");
+                tableRepository.save(newTable);
+            }
+
+            //tables zone C corda 2
+            for (int i = 1; i <= 6;i++) {
+                TableLocation newTable = new TableLocation();
+                newTable.setName("Table " + i);
+                newTable.setLocation(locationRepository.findById(2));
+                newTable.setZone("C");
+                tableRepository.save(newTable);
+            }
+
+            //tables zone D corda 2
+            for (int i = 1; i <= 5 ;i++) {
+                TableLocation newTable = new TableLocation();
+                newTable.setName("Table " + i);
+                newTable.setLocation(locationRepository.findById(2));
+                newTable.setZone("D");
                 tableRepository.save(newTable);
             }
         }
@@ -73,15 +141,24 @@ public class MainController {
         }
         if (employeeRepository.count()==0)
         {
-            for (int i = 1 ; i < 10 ; i++)
+            String[] first_name = {"Danny","Nico","Yentl","Ralph","Rudolf"};
+            String[] last_name = {"Verelst","Wellens","Janssens","Appels","Verstrepen"};
+            if (first_name.length == last_name.length)
             {
-                Employee employee = new Employee();
-                employee.setEmail("test" + i + "@gmail.com");
-                employee.setFirstname("Test" + i);
-                employee.setLastname("Test" + i);
-                employee.setPassword("test123");
-                employee.setRoleId(1);
-                employeeRepository.save(employee);
+                for (int i = 0; i < first_name.length; i++)
+                {
+                    Employee employee = new Employee();
+                    employee.setEmail(first_name[i] + "." +  last_name[i] +  "@gmail.com");
+                    employee.setFirstname(first_name[i]);
+                    employee.setLastname(last_name[i]);
+                    employee.setPassword(first_name[i] + "123");
+                    employee.setRoleId(1);
+                    employeeRepository.save(employee);
+                }
+            }
+            else
+            {
+                System.out.println("Please give the same amount of name/lastname");
             }
         }
         if (reservationRepository.count()==0)
