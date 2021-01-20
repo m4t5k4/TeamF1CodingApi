@@ -150,7 +150,6 @@ public class MainController {
                 IntStream.range(start, num).forEachOrdered(n ->
                 {
                     Place addPlaceToTable = placeRepository.findById(n+1);
-                    System.out.println(values.indexOf(num));
                     addPlaceToTable.setTableLocation(tableRepository.findById(values.indexOf(num)+1));
                     placeRepository.save(addPlaceToTable);
                 });
