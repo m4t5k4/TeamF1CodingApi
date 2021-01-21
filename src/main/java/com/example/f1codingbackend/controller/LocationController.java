@@ -58,12 +58,12 @@ public class LocationController {
         List <TableLocation> table_locations = location.getTableLocations();
         for (TableLocation table_location : table_locations)
         {
-            List <Reservation> reservations = table_location.getReservations();
             List <Place> places = table_location.getPlaces();
-            for (Reservation reservation : reservations){
-                reservationRepository.delete(reservation);
-            }
             for (Place place : places){
+                List<Reservation> reservations =  place.getReservations();
+                for (Reservation reservation: reservations) {
+                    reservationRepository.delete(reservation);
+                }
                 placeRepository.delete(place);
             }
             tableRepository.delete(table_location);

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -188,7 +189,10 @@ public class MainController {
                 reservation.setAmountPersons(5);
                 reservation.setStartHour(LocalTime.of(8,10));
                 reservation.setEndHour(LocalTime.of(19,00));
-                reservation.setTableLocation(tableRepository.findById(1));
+                List<Place> places = new ArrayList<>();
+                places.add(placeRepository.findById(1));
+                places.add(placeRepository.findById(2));
+                reservation.setPlaces(places);
                 reservationRepository.save(reservation);
             }
         }

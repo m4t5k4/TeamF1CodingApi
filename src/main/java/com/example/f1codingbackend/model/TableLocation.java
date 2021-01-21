@@ -15,9 +15,6 @@ public class TableLocation {
     private String zone;
     @OneToMany(mappedBy="tableLocation")
     @JsonIgnore
-    private List<Reservation> reservations = new ArrayList<>();
-    @OneToMany(mappedBy="tableLocation")
-    @JsonIgnore
     private List<Place> places = new ArrayList<>();
     @ManyToOne
     private Location location;
@@ -39,14 +36,6 @@ public class TableLocation {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
     }
 
     public List<Place> getPlaces() {

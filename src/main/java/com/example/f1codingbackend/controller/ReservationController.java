@@ -44,7 +44,7 @@ public class ReservationController {
         retrievedReservation.setDescription(updatedReservation.getDescription());
         retrievedReservation.setEndHour(updatedReservation.getEndHour());
         retrievedReservation.setStartHour(updatedReservation.getStartHour());
-        retrievedReservation.setTableLocation(updatedReservation.getTableLocation());
+        retrievedReservation.setPlaces(updatedReservation.getPlaces());
 
         reservationRepository.save(retrievedReservation);
         return retrievedReservation;

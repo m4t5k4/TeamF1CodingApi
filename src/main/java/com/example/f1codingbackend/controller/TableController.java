@@ -26,8 +26,6 @@ public class TableController {
     @Autowired
     private PlaceRepository placeRepository;
 
-    @Autowired
-    private ReservationRepository reservationRepository;
 
     @GetMapping("/tables")
     public List<TableLocation> getTables() {
@@ -51,7 +49,6 @@ public class TableController {
         retrievedTable.setLocation(updatedTable.getLocation());
         retrievedTable.setName(updatedTable.getName());
         retrievedTable.setPlaces(updatedTable.getPlaces());
-        retrievedTable.setReservations(updatedTable.getReservations());
 
         tableRepository.save(retrievedTable);
         return retrievedTable;
@@ -65,11 +62,6 @@ public class TableController {
             List<Place> tablePlaces = table.getPlaces();
             for (Place tablePlace: tablePlaces) {
                 placeRepository.delete(tablePlace);
-            }
-
-            List<Reservation> reservations = table.getReservations();
-            for (Reservation reservation: reservations) {
-                reservationRepository.delete(reservation);
             }
 
             tableRepository.delete(table);

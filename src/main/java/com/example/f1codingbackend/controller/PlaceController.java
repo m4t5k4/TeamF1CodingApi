@@ -1,7 +1,9 @@
 package com.example.f1codingbackend.controller;
 
 import com.example.f1codingbackend.model.Place;
+import com.example.f1codingbackend.model.Reservation;
 import com.example.f1codingbackend.repository.PlaceRepository;
+import com.example.f1codingbackend.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,9 @@ public class PlaceController {
 
     @Autowired
     PlaceRepository placeRepository;
+
+    @Autowired
+    private ReservationRepository reservationRepository;
 
     @GetMapping("/places")
     public List<Place> getPlaces() {
@@ -34,22 +39,28 @@ public class PlaceController {
     }
     @PutMapping("/places")
     public Place updateTable(@RequestBody Place updatedPlace) {
-        Place retrievedplace = placeRepository.findById(updatedPlace.getId());
+        Place retrievedPlace = placeRepository.findById(updatedPlace.getId());
 
-        retrievedplace.setTableLocation(updatedPlace.getTableLocation());
+        retrievedPlace.setTableLocation(updatedPlace.getTableLocation());
+        retrievedPlace.setReservations(updatedPlace.getReservations());
 
-        placeRepository.save(retrievedplace);
-        return retrievedplace;
+        placeRepository.save(retrievedPlace);
+        return retrievedPlace;
     }
 
     @DeleteMapping("/places/{appId}")
     public ResponseEntity deleteplace(@PathVariable Integer appId){
         Place place = placeRepository.findById(appId);
         if (place!=null){
+            List<Reservation> reservations = place.getReservations();
+            for (Reservation reservation: reservations) {
+                reservationRepository.delete(reservation);
+            }
             placeRepository.delete(place);
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.notFound().build();
         }
+
     }
 }
