@@ -12,9 +12,7 @@ public class TableLocation {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy="tableLocation")
-    @JsonIgnore
-    private List<Reservation> reservations = new ArrayList<>();
+    private String zone;
     @OneToMany(mappedBy="tableLocation")
     @JsonIgnore
     private List<Place> places = new ArrayList<>();
@@ -40,14 +38,6 @@ public class TableLocation {
         this.name = name;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-
     public List<Place> getPlaces() {
         return places;
     }
@@ -62,5 +52,13 @@ public class TableLocation {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public String getZone() {
+        return zone;
+    }
+
+    public void setZone(String zone) {
+        this.zone = zone;
     }
 }

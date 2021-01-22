@@ -2,7 +2,9 @@ package com.example.f1codingbackend.model;
 
 import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Reservation {
@@ -21,8 +23,9 @@ public class Reservation {
     @ManyToOne
     private User user;
 
-    @ManyToOne
-    private TableLocation tableLocation;
+    @ManyToMany
+    @JoinTable
+    private List<Place> places = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -80,11 +83,7 @@ public class Reservation {
         this.user = user;
     }
 
-    public TableLocation getTableLocation() {
-        return tableLocation;
-    }
+    public List<Place> getPlaces() { return places; }
 
-    public void setTableLocation(TableLocation tableLocation) {
-        this.tableLocation = tableLocation;
-    }
+    public void setPlaces(List<Place> places) { this.places = places; }
 }

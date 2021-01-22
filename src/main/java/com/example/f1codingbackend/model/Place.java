@@ -1,5 +1,7 @@
 package com.example.f1codingbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,10 @@ public class Place {
 
     @ManyToOne
     private TableLocation tableLocation;
+
+    @ManyToMany(mappedBy = "places")
+    @JsonIgnore
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Place() {
     }
@@ -31,5 +37,13 @@ public class Place {
 
     public void setTableLocation(TableLocation tableLocation) {
         this.tableLocation = tableLocation;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

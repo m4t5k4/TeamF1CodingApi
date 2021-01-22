@@ -1,6 +1,8 @@
 package com.example.f1codingbackend.controller;
 
 import com.example.f1codingbackend.repository.LocationRepository;
+import com.example.f1codingbackend.repository.PlaceRepository;
+import com.example.f1codingbackend.repository.ReservationRepository;
 import com.example.f1codingbackend.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,10 @@ public class TableController {
 
     @Autowired
     private TableRepository tableRepository;
+
+    @Autowired
+    private PlaceRepository placeRepository;
+
 
     @GetMapping("/tables")
     public List<TableLocation> getTables() {
@@ -43,7 +49,6 @@ public class TableController {
         retrievedTable.setLocation(updatedTable.getLocation());
         retrievedTable.setName(updatedTable.getName());
         retrievedTable.setPlaces(updatedTable.getPlaces());
-        retrievedTable.setReservations(updatedTable.getReservations());
 
         tableRepository.save(retrievedTable);
         return retrievedTable;
@@ -53,6 +58,12 @@ public class TableController {
     public ResponseEntity deleteTable(@PathVariable Integer appId){
         TableLocation table = tableRepository.findById(appId);
         if (table!=null){
+
+            List<Place> tablePlaces = table.getPlaces();
+            for (Place tablePlace: tablePlaces) {
+                placeRepository.delete(tablePlace);
+            }
+
             tableRepository.delete(table);
             return ResponseEntity.ok().build();
         } else {
