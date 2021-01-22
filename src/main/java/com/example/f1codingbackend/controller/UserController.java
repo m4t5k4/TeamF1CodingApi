@@ -32,10 +32,10 @@ public class UserController {
         return newUser;
     }
 
-    @PutMapping("/employees/{id}")
-    public User replaceUser(@RequestBody User user,@PathVariable Long id)
+    @PutMapping("/employees")
+    public User replaceUser(@RequestBody User user)
     {
-        User currentUser = userRepository.findUserById(id);
+        User currentUser = userRepository.findUserById(user.getId());
         currentUser.setFirstname(user.getFirstname());
         currentUser.setLastname(user.getLastname());
         currentUser.setPassword(user.getPassword());
