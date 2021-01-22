@@ -40,10 +40,10 @@ public class LocationController {
         return location;
     }
 
-    @PutMapping("/locations/{position}")
-    public Location replaceLocation(@RequestBody Location location,@PathVariable int position)
+    @PutMapping("/locations")
+    public Location replaceLocation(@RequestBody Location location)
     {
-       Location currentLocation = locationRepository.findById(position);
+       Location currentLocation = locationRepository.findById(location.getId());
        currentLocation.setName(location.getName());
        currentLocation.setDescription(location.getDescription());
        currentLocation.setAddress(location.getAddress());

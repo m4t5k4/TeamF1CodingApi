@@ -1,6 +1,5 @@
 package com.example.f1codingbackend.payload.request;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Set;
