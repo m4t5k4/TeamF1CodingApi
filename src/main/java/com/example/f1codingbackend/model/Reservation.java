@@ -19,7 +19,7 @@ public class Reservation {
     }
 
     @ManyToOne
-    private Employee employee;
+    private User user;
 
     @ManyToOne
     private TableLocation tableLocation;
@@ -72,12 +72,12 @@ public class Reservation {
         this.description = description;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public User getUser() {
+        return user;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public TableLocation getTableLocation() {

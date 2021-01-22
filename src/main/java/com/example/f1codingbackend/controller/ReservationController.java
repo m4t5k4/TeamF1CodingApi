@@ -1,6 +1,5 @@
 package com.example.f1codingbackend.controller;
 
-import com.example.f1codingbackend.repository.EmployeeRepository;
 import com.example.f1codingbackend.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +37,7 @@ public class ReservationController {
     public Reservation updateTable(@RequestBody Reservation updatedReservation) {
         Reservation retrievedReservation = reservationRepository.findById(updatedReservation.getId());
 
-        retrievedReservation.setEmployee(updatedReservation.getEmployee());
+        retrievedReservation.setUser(updatedReservation.getUser());
         retrievedReservation.setAmountPersons(updatedReservation.getAmountPersons());
         retrievedReservation.setDate(updatedReservation.getDate());
         retrievedReservation.setDescription(updatedReservation.getDescription());

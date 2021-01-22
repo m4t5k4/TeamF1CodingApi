@@ -27,11 +27,17 @@ public class MainController {
     @Autowired
     PlaceRepository placeRepository;
 
+//    @Autowired
+//    EmployeeRepository employeeRepository;
+
     @Autowired
-    EmployeeRepository employeeRepository;
+    UserRepository userRepository;
 
     @Autowired
     ReservationRepository reservationRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     @GetMapping("/")
     public String home() {
@@ -71,17 +77,30 @@ public class MainController {
                 placeRepository.save(newplace);
             }
         }
-        if (employeeRepository.count()==0)
+//        if (employeeRepository.count()==0)
+//        {
+//            for (int i = 1 ; i < 10 ; i++)
+//            {
+//                Employee employee = new Employee();
+//                employee.setEmail("test" + i + "@gmail.com");
+//                employee.setFirstname("Test" + i);
+//                employee.setLastname("Test" + i);
+//                employee.setPassword("test123");
+//                employee.setRoleId(1);
+//                employeeRepository.save(employee);
+//            }
+//        }
+
+        if (userRepository.count()==0)
         {
             for (int i = 1 ; i < 10 ; i++)
             {
-                Employee employee = new Employee();
-                employee.setEmail("test" + i + "@gmail.com");
-                employee.setFirstname("Test" + i);
-                employee.setLastname("Test" + i);
-                employee.setPassword("test123");
-                employee.setRoleId(1);
-                employeeRepository.save(employee);
+                User user = new User();
+                user.setFirstname("Test" + i);
+                user.setLastname("Test" + i);
+                user.setUsername("test" + i + "@gmail.com");
+                user.setPassword("$2a$10$k/1hEuJ2WWz9JSU9cuMP8uMMdaRkfPE/MGDH5/Cn8I/GNDxxt1aP2"); //password: test123
+                userRepository.save(user);
             }
         }
         if (reservationRepository.count()==0)
@@ -90,13 +109,19 @@ public class MainController {
             {
                 Reservation reservation = new Reservation();
                 reservation.setDate(new java.util.Date());
-                reservation.setEmployee(employeeRepository.findById(1));
+                reservation.setUser(userRepository.findUserById(1L));
                 reservation.setAmountPersons(5);
                 reservation.setStartHour(LocalTime.of(8,10));
                 reservation.setEndHour(LocalTime.of(19,00));
                 reservation.setTableLocation(tableRepository.findById(1));
                 reservationRepository.save(reservation);
             }
+        }
+        if (roleRepository.count()==0)
+        {
+            roleRepository.save(new Role(ERole.Employee));
+            roleRepository.save(new Role(ERole.OfficeManager));
+            roleRepository.save(new Role(ERole.Admin));
         }
     }
 }
