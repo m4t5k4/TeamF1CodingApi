@@ -27,10 +27,10 @@ public class LocationController {
         return  locationList;
     }
 
-    @GetMapping("/locations/{position}")
-    public Location one(@PathVariable int position)
+    @GetMapping("/locations/{id}")
+    public Location one(@PathVariable int id)
     {
-        return locationRepository.findById(position);
+        return locationRepository.findById(id);
     }
 
     @PostMapping("/locations")
@@ -51,10 +51,10 @@ public class LocationController {
        return currentLocation;
     }
 
-    @DeleteMapping("/locations/{position}")
-    public void deleteLocation(@PathVariable int position)
+    @DeleteMapping("/locations/{id}")
+    public void deleteLocation(@PathVariable int id)
     {
-        Location location = locationRepository.findById(position);
+        Location location = locationRepository.findById(id);
         List <TableLocation> table_locations = location.getTableLocations();
         for (TableLocation table_location : table_locations)
         {
