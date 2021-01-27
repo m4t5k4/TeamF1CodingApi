@@ -33,6 +33,9 @@ public class MainController {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    IOTRepository iotRepository;
+
     @GetMapping("/")
     public String home() {
         return "home";
@@ -184,6 +187,13 @@ public class MainController {
             roleRepository.save(new Role(ERole.Employee));
             roleRepository.save(new Role(ERole.OfficeManager));
             roleRepository.save(new Role(ERole.Admin));
+        }
+
+        if (iotRepository.count()==0)
+        {
+            IOT iot = new IOT();
+            iot.setTotalInside(30);
+            iotRepository.save(iot);
         }
     }
 }

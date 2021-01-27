@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface IOTRepository extends JpaRepository<IOT, Long> {
     List<IOT> findAll();
+    IOT findById(int id);
 }
