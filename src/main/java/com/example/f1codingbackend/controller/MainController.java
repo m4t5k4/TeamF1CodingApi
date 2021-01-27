@@ -187,20 +187,6 @@ public class MainController {
                 reservation.setPlaces(places);
                 reservationRepository.save(reservation);
             }
-
-            for (int i = 1; i < 5; i++) {
-                Reservation reservation = new Reservation();
-                reservation.setDate(new java.util.Date());
-                reservation.setUser(userRepository.findUserById(2l));
-                reservation.setAmountPersons(5);
-                reservation.setStartHour(LocalTime.of(8, 10));
-                reservation.setEndHour(LocalTime.of(19, 00));
-                List<Place> places = new ArrayList<>();
-                places.add(placeRepository.findById(1));
-                places.add(placeRepository.findById(2));
-                reservation.setPlaces(places);
-                reservationRepository.save(reservation);
-            }
         }
         if (roleRepository.count() == 0) {
             roleRepository.save(new Role(ERole.Employee));
