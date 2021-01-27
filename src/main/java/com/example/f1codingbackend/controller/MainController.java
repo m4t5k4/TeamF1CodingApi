@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Month;
+import java.util.*;
 import java.util.stream.IntStream;
 
 @RestController
@@ -159,20 +160,24 @@ public class MainController {
         }
 
         if (userRepository.count() == 0) {
-            for (int i = 0; i < 10; i++) {
-                User user = new User();
-                user.setFirstname("Test" + i);
-                user.setLastname("Test" + i);
-                user.setUsername("test" + i + "@gmail.com");
-                user.setPassword("$2a$10$k/1hEuJ2WWz9JSU9cuMP8uMMdaRkfPE/MGDH5/Cn8I/GNDxxt1aP2"); //password: test123
-                userRepository.save(user);
+            String [] first_names = {"David","Jelle","Randy","Marcel","Gert","Bill","Chloe","Christie","Nana","Darrel"};
+            String [] last_names = {"Lim","Findlay","Verstrepen","Heylen","Janssens","Hardin","Luna","Holding","Barrera","Shea"};
+            if ( first_names.length == last_names.length) {
+                for (int i = 0; i < 10; i++) {
+                    User user = new User();
+                    user.setFirstname(first_names[i]);
+                    user.setLastname(last_names[i]);
+                    user.setUsername(first_names[i] + "." + last_names[i] + "@gmail.com");
+                    user.setPassword("$2a$10$k/1hEuJ2WWz9JSU9cuMP8uMMdaRkfPE/MGDH5/Cn8I/GNDxxt1aP2"); //password: test123
+                    userRepository.save(user);
+                }
             }
         }
         if (reservationRepository.count() == 0) {
-            for (int i = 1; i < 10; i++) {
+            for (int i = 1; i < 100 ; i++) {
                 Reservation reservation = new Reservation();
-                reservation.setDate(new java.util.Date());
-                reservation.setUser(userRepository.findUserById(1L));
+                reservation.setDate(new GregorianCalendar(2021, Calendar.FEBRUARY, new Random().nextInt(25)  + 1 ).getTime());
+                reservation.setUser(userRepository.findUserById(Long.valueOf(new Random().nextInt(10)  + 1 )));
                 reservation.setAmountPersons(5);
                 reservation.setStartHour(LocalTime.of(8, 10));
                 reservation.setEndHour(LocalTime.of(19, 00));
@@ -207,6 +212,7 @@ public class MainController {
         {
             IOT iot = new IOT();
             iot.setTotalInside(30);
+            iot.setTimeStamp( LocalDateTime.of(2014, Month.JANUARY, 1, 10, 10, 30));
             iotRepository.save(iot);
         }
     }
