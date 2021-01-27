@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 public class IOT {
@@ -12,6 +13,7 @@ public class IOT {
     private int id;
 
     private int totalInside;
+    private LocalDateTime timeStamp;
 
     public int getId() {
         return id;
@@ -27,6 +29,14 @@ public class IOT {
 
     public void setTotalInside(int totalInside) {
         this.totalInside = totalInside;
+    }
+
+    public LocalDateTime getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(LocalDateTime timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
     public IOT() {
