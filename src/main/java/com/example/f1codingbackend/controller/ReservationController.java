@@ -18,13 +18,20 @@ public class ReservationController {
     @Autowired
     private ReservationRepository reservationRepository;
 
+
     @GetMapping("/reservations")
-    public List<Reservation> getReservations() {
+    public List<Reservation> all() {
         return reservationRepository.findAll();
     }
 
     @GetMapping("/reservations/{id}")
     public Reservation one(@PathVariable Integer id){ return reservationRepository.findById(id); }
+
+    @GetMapping("/reservations/user/{id}")
+    public List<Reservation> allByUser(@PathVariable Long id) {
+        List<Reservation> r = reservationRepository.findByUser_Id(id);
+        return r;
+    }
 
     @PostMapping("/reservations")
     public Reservation add(@RequestBody Reservation reservation) {
