@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
@@ -176,7 +177,7 @@ public class MainController {
         if (reservationRepository.count() == 0) {
             for (int i = 1; i < 100 ; i++) {
                 Reservation reservation = new Reservation();
-                reservation.setDate(new GregorianCalendar(2021, Calendar.FEBRUARY, new Random().nextInt(25)  + 1 ).getTime());
+                reservation.setDate(LocalDate.of(2021, Month.FEBRUARY, new Random().nextInt(25)  + 1 ));
                 reservation.setUser(userRepository.findUserById(Long.valueOf(new Random().nextInt(10)  + 1 )));
                 reservation.setAmountPersons(5);
                 reservation.setStartHour(LocalTime.of(8, 10));

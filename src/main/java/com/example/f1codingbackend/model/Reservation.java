@@ -1,6 +1,7 @@
 package com.example.f1codingbackend.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +12,7 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
-    private Date date;
+    private LocalDate date;
     private LocalTime startHour;
     private LocalTime endHour;
     private int amountPersons;
@@ -35,11 +36,11 @@ public class Reservation {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
