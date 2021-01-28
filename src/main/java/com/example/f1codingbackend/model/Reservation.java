@@ -17,6 +17,7 @@ public class Reservation {
     private LocalTime endHour;
     private int amountPersons;
     private String description;
+    private Boolean confirmed;
 
     public Reservation() {
     }
@@ -87,4 +88,12 @@ public class Reservation {
     public List<Place> getPlaces() { return places; }
 
     public void setPlaces(List<Place> places) { this.places = places; }
+
+    public Boolean getConfirmed() {
+        return confirmed;
+    }
+
+    public void setConfirmed(Boolean confirmed) {
+        this.confirmed = confirmed;
+    }
 }
