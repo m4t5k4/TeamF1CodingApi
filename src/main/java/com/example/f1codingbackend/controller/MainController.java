@@ -135,15 +135,15 @@ public class MainController {
             }
         }
         if (placeRepository.count() == 0) {
-            for (int i = 1; i <= 240; i++) {
-                Place newplace = new Place();
-                placeRepository.save(newplace);
-            }
             Integer[] placeNums = {8, 16, 24, 30, 34, 38, 42, 52, 62, 68, 74, 80, 86, 92, 98, 104, 110, 116, 122, 126, 136, 146,
                     154, 162, 170, 178, 182, 186, 190, 194, 202, 210, 216, 224, 232, 238, 240};
             ArrayList<Integer> values = new ArrayList<>();
             for (int id : placeNums) {
                 values.add(id);
+            }
+
+            for (int i = 1; i <= 240; i++) {
+
             }
 
             for (int num : values) {
@@ -152,7 +152,12 @@ public class MainController {
                     start = values.get(values.indexOf(num) - 1);
                 IntStream.range(start, num).forEachOrdered(n ->
                 {
-                    Place addPlaceToTable = placeRepository.findById(n + 1);
+                    int placeNr = 0;
+                    if (values.indexOf(num) != 0){ placeNr = n - values.get(values.indexOf(num) - 1)+1; }
+                    else { placeNr = n+1; }
+                    String name = "Place "+ placeNr ;
+                    Place addPlaceToTable = new Place();
+                    addPlaceToTable.setName(name);
                     addPlaceToTable.setTableLocation(tableRepository.findById(values.indexOf(num) + 1));
                     placeRepository.save(addPlaceToTable);
                 });
