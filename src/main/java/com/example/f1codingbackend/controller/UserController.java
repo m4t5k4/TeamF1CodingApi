@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
+@RestController
 public class UserController {
     @Autowired
     UserRepository userRepository;
@@ -40,6 +40,7 @@ public class UserController {
         currentUser.setLastname(user.getLastname());
         currentUser.setPassword(user.getPassword());
         currentUser.setUsername(user.getUsername());
+        currentUser.setRoles(user.getRoles());
         userRepository.save(currentUser);
         return currentUser;
     }

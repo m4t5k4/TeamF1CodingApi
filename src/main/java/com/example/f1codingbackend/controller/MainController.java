@@ -182,7 +182,6 @@ public class MainController {
         }
         if (roleRepository.count() == 0) {
             roleRepository.save(new Role(ERole.Employee));
-            roleRepository.save(new Role(ERole.OfficeManager));
             roleRepository.save(new Role(ERole.Admin));
         }
     }
