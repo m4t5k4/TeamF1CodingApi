@@ -155,7 +155,7 @@ public class MainController {
                     int placeNr = 0;
                     if (values.indexOf(num) != 0){ placeNr = n - values.get(values.indexOf(num) - 1)+1; }
                     else { placeNr = n+1; }
-                    String name = "Place "+ placeNr ;
+                    String name = "Plaats "+ placeNr ;
                     Place addPlaceToTable = new Place();
                     addPlaceToTable.setName(name);
                     addPlaceToTable.setTableLocation(tableRepository.findById(values.indexOf(num) + 1));
