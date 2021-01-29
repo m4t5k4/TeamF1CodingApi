@@ -18,23 +18,28 @@ public class ReservationController {
     @Autowired
     private ReservationRepository reservationRepository;
 
+
     @GetMapping("/reservations")
-    public List<Reservation> getReservations() {
+    public List<Reservation> all() {
         return reservationRepository.findAll();
     }
 
-    @GetMapping("/reservations/{appId}")
-    public Reservation getReservationByAppId(@PathVariable Integer appId){
-        return reservationRepository.findById(appId);
+    @GetMapping("/reservations/{id}")
+    public Reservation one(@PathVariable Integer id){ return reservationRepository.findById(id); }
+
+    @GetMapping("/reservations/user/{id}")
+    public List<Reservation> allByUser(@PathVariable Long id) {
+        List<Reservation> r = reservationRepository.findByUser_Id(id);
+        return r;
     }
 
     @PostMapping("/reservations")
-    public Reservation addTable(@RequestBody Reservation reservation) {
+    public Reservation add(@RequestBody Reservation reservation) {
         reservationRepository.save(reservation);
         return reservation;
     }
     @PutMapping("/reservations")
-    public Reservation updateTable(@RequestBody Reservation updatedReservation) {
+    public Reservation replaceReservation(@RequestBody Reservation updatedReservation) {
         Reservation retrievedReservation = reservationRepository.findById(updatedReservation.getId());
 
         retrievedReservation.setUser(updatedReservation.getUser());
@@ -49,9 +54,9 @@ public class ReservationController {
         return retrievedReservation;
     }
 
-    @DeleteMapping("/reservations/{appId}")
-    public ResponseEntity deleteReservation(@PathVariable Integer appId){
-        Reservation reservation = reservationRepository.findById(appId);
+    @DeleteMapping("/reservations/{id}")
+    public ResponseEntity deleteReservation(@PathVariable Integer id){
+        Reservation reservation = reservationRepository.findById(id);
         if (reservation!=null){
             reservationRepository.delete(reservation);
             return ResponseEntity.ok().build();

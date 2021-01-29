@@ -27,18 +27,18 @@ public class PlaceController {
         return placeRepository.findAll();
     }
 
-    @GetMapping("/places/{appId}")
-    public Place getPlaceByAppId(@PathVariable Integer appId){
-        return placeRepository.findById(appId);
+    @GetMapping("/places/{id}")
+    public Place one(@PathVariable Integer id){
+        return placeRepository.findById(id);
     }
 
     @PostMapping("/places")
-    public Place addTable(@RequestBody Place place) {
+    public Place add(@RequestBody Place place) {
         placeRepository.save(place);
         return place;
     }
     @PutMapping("/places")
-    public Place updateTable(@RequestBody Place updatedPlace) {
+    public Place replacePlace(@RequestBody Place updatedPlace) {
         Place retrievedPlace = placeRepository.findById(updatedPlace.getId());
 
         retrievedPlace.setTableLocation(updatedPlace.getTableLocation());
@@ -48,9 +48,9 @@ public class PlaceController {
         return retrievedPlace;
     }
 
-    @DeleteMapping("/places/{appId}")
-    public ResponseEntity deleteplace(@PathVariable Integer appId){
-        Place place = placeRepository.findById(appId);
+    @DeleteMapping("/places/{id}")
+    public ResponseEntity deleteplace(@PathVariable Integer id){
+        Place place = placeRepository.findById(id);
         if (place!=null){
             List<Reservation> reservations = place.getReservations();
             for (Reservation reservation: reservations) {

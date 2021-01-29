@@ -32,18 +32,18 @@ public class TableController {
         return tableRepository.findAll();
     }
 
-    @GetMapping("/tables/{appId}")
-    public TableLocation getTableByAppId(@PathVariable Integer appId){
-        return tableRepository.findById(appId);
+    @GetMapping("/tables/{id}")
+    public TableLocation one(@PathVariable Integer id){
+        return tableRepository.findById(id);
     }
 
     @PostMapping("/tables")
-    public TableLocation addTable(@RequestBody TableLocation tableLocation) {
+    public TableLocation add(@RequestBody TableLocation tableLocation) {
         tableRepository.save(tableLocation);
         return tableLocation;
     }
     @PutMapping("/tables")
-    public TableLocation updateTable(@RequestBody TableLocation updatedTable) {
+    public TableLocation replaceTable(@RequestBody TableLocation updatedTable) {
         TableLocation retrievedTable = tableRepository.findById(updatedTable.getId());
 
         retrievedTable.setLocation(updatedTable.getLocation());
@@ -54,9 +54,9 @@ public class TableController {
         return retrievedTable;
     }
 
-    @DeleteMapping("/tables/{appId}")
-    public ResponseEntity deleteTable(@PathVariable Integer appId){
-        TableLocation table = tableRepository.findById(appId);
+    @DeleteMapping("/tables/{id}")
+    public ResponseEntity deleteTable(@PathVariable Integer id){
+        TableLocation table = tableRepository.findById(id);
         if (table!=null){
 
             List<Place> tablePlaces = table.getPlaces();
