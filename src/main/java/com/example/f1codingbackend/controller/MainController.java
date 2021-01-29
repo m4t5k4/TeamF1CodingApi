@@ -60,7 +60,7 @@ public class MainController {
             //tables zone A corda 1
             for (int i = 1; i <= 4; i++) {
                 TableLocation newTable = new TableLocation();
-                newTable.setName("Table " + i);
+                newTable.setName("Tafel " + i);
                 newTable.setLocation(locationRepository.findById(1));
                 newTable.setZone("A");
                 tableRepository.save(newTable);
@@ -68,7 +68,7 @@ public class MainController {
             //tables zone B corda 1
             for (int i = 1; i <= 5; i++) {
                 TableLocation newTable = new TableLocation();
-                newTable.setName("Table " + i);
+                newTable.setName("Tafel " + i);
                 newTable.setLocation(locationRepository.findById(1));
                 newTable.setZone("B");
                 tableRepository.save(newTable);
@@ -76,7 +76,7 @@ public class MainController {
             //tables zone C corda 1
             for (int i = 1; i <= 4; i++) {
                 TableLocation newTable = new TableLocation();
-                newTable.setName("Table " + i);
+                newTable.setName("Tafel " + i);
                 newTable.setLocation(locationRepository.findById(1));
                 newTable.setZone("C");
                 tableRepository.save(newTable);
@@ -84,7 +84,7 @@ public class MainController {
             //tables zone D corda 1
             for (int i = 1; i <= 4; i++) {
                 TableLocation newTable = new TableLocation();
-                newTable.setName("Table " + i);
+                newTable.setName("Tafel " + i);
                 newTable.setLocation(locationRepository.findById(1));
                 newTable.setZone("D");
                 tableRepository.save(newTable);
@@ -92,7 +92,7 @@ public class MainController {
             //tables zone E corda 1
             for (int i = 1; i <= 3; i++) {
                 TableLocation newTable = new TableLocation();
-                newTable.setName("Table " + i);
+                newTable.setName("Tafel " + i);
                 newTable.setLocation(locationRepository.findById(1));
                 newTable.setZone("E");
                 tableRepository.save(newTable);
@@ -101,7 +101,7 @@ public class MainController {
             //tables zone A corda 2
             for (int i = 1; i <= 3; i++) {
                 TableLocation newTable = new TableLocation();
-                newTable.setName("Table " + i);
+                newTable.setName("Tafel " + i);
                 newTable.setLocation(locationRepository.findById(2));
                 newTable.setZone("A");
                 tableRepository.save(newTable);
@@ -110,7 +110,7 @@ public class MainController {
             //tables zone B corda 2
             for (int i = 1; i <= 3; i++) {
                 TableLocation newTable = new TableLocation();
-                newTable.setName("Table " + i);
+                newTable.setName("Tafel " + i);
                 newTable.setLocation(locationRepository.findById(2));
                 newTable.setZone("B");
                 tableRepository.save(newTable);
@@ -119,7 +119,7 @@ public class MainController {
             //tables zone C corda 2
             for (int i = 1; i <= 6; i++) {
                 TableLocation newTable = new TableLocation();
-                newTable.setName("Table " + i);
+                newTable.setName("Tafel " + i);
                 newTable.setLocation(locationRepository.findById(2));
                 newTable.setZone("C");
                 tableRepository.save(newTable);
@@ -128,7 +128,7 @@ public class MainController {
             //tables zone D corda 2
             for (int i = 1; i <= 5; i++) {
                 TableLocation newTable = new TableLocation();
-                newTable.setName("Table " + i);
+                newTable.setName("Tafel " + i);
                 newTable.setLocation(locationRepository.findById(2));
                 newTable.setZone("D");
                 tableRepository.save(newTable);
