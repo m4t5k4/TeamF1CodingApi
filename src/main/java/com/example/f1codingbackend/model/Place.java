@@ -12,6 +12,7 @@ public class Place {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
+    private String name;
 
     @ManyToOne
     private TableLocation tableLocation;
@@ -45,5 +46,13 @@ public class Place {
 
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
