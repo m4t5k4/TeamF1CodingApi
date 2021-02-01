@@ -13,6 +13,7 @@ public class Place {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private String name;
+    private Boolean active;
 
     @ManyToOne
     private TableLocation tableLocation;
@@ -54,5 +55,13 @@ public class Place {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

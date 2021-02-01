@@ -158,6 +158,7 @@ public class MainController {
                     String name = "Plaats "+ placeNr ;
                     Place addPlaceToTable = new Place();
                     addPlaceToTable.setName(name);
+                    addPlaceToTable.setActive(true);
                     addPlaceToTable.setTableLocation(tableRepository.findById(values.indexOf(num) + 1));
                     placeRepository.save(addPlaceToTable);
                 });
@@ -203,10 +204,6 @@ public class MainController {
 
         if (iotRepository.count()==0)
         {
-            IOT iot = new IOT();
-            iot.setTotalInside(30);
-            iot.setTimeStamp( LocalDateTime.of(2014, Month.JANUARY, 1, 10, 10, 30));
-            iotRepository.save(iot);
         }
     }
 }
