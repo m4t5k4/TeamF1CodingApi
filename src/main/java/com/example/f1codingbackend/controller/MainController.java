@@ -38,6 +38,9 @@ public class MainController {
     @Autowired
     IOTRepository iotRepository;
 
+    @Autowired
+    ScenarioRepository scenarioRepository;
+
     @GetMapping("/")
     public String home() {
         return "home";
@@ -216,8 +219,11 @@ public class MainController {
                 reservationRepository.save(reservation);
             }
         }
-        if (iotRepository.count()==0)
+        if (scenarioRepository.count() == 0 )
         {
+            Scenario scenario = new Scenario();
+            scenario.setScenario("Groen");
+            scenarioRepository.save(scenario);
         }
     }
 }
