@@ -135,7 +135,7 @@ public class MainController {
             }
         }
         if (placeRepository.count() == 0) {
-            Integer[] placeNums = {8, 16, 24, 30, 34, 38, 42, 52, 62, 68, 74, 80, 86, 92, 98, 104, 110, 116, 122, 126, 136, 146,
+            Integer[] placeNums = {8, 16, 22, 30, 34, 38, 42, 52, 62, 68, 74, 80, 86, 92, 98, 104, 110, 116, 122, 126, 136, 146,
                     154, 162, 170, 178, 182, 186, 190, 194, 202, 210, 216, 224, 232, 238, 240};
             ArrayList<Integer> values = new ArrayList<>();
             for (int id : placeNums) {
