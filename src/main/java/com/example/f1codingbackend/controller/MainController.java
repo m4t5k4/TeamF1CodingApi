@@ -165,13 +165,32 @@ public class MainController {
 
             }
         }
-
+        if (roleRepository.count() == 0) {
+            roleRepository.save(new Role(ERole.Employee));
+            roleRepository.save(new Role(ERole.Admin));
+        }
         if (userRepository.count() == 0) {
             String [] first_names = {"David","Jelle","Randy","Marcel","Gert","Bill","Chloe","Christie","Nana","Darrel"};
             String [] last_names = {"Lim","Findlay","Verstrepen","Heylen","Janssens","Hardin","Luna","Holding","Barrera","Shea"};
             if ( first_names.length == last_names.length) {
                 for (int i = 0; i < 10; i++) {
                     User user = new User();
+                    if ( i < 8)
+                    {
+                        Set<Role> roles = new HashSet<>();
+                        Role userRole = roleRepository.findByName(ERole.Employee)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(userRole);
+                        user.setRoles(roles);
+                    }
+                    else
+                    {
+                        Set<Role> roles = new HashSet<>();
+                        Role userRole = roleRepository.findByName(ERole.Admin)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(userRole);
+                        user.setRoles(roles);
+                    }
                     user.setFirstname(first_names[i]);
                     user.setLastname(last_names[i]);
                     user.setUsername(first_names[i] + "." + last_names[i] + "@gmail.com");
@@ -197,11 +216,6 @@ public class MainController {
                 reservationRepository.save(reservation);
             }
         }
-        if (roleRepository.count() == 0) {
-            roleRepository.save(new Role(ERole.Employee));
-            roleRepository.save(new Role(ERole.Admin));
-        }
-
         if (iotRepository.count()==0)
         {
         }
