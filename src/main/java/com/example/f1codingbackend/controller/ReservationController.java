@@ -2,6 +2,7 @@ package com.example.f1codingbackend.controller;
 
 import com.example.f1codingbackend.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.f1codingbackend.model.*;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -30,6 +32,12 @@ public class ReservationController {
     @GetMapping("/reservations/user/{id}")
     public List<Reservation> allByUser(@PathVariable Long id) {
         List<Reservation> r = reservationRepository.findByUser_Id(id);
+        return r;
+    }
+
+    @GetMapping("/reservations/date/{date}")
+    public List<Reservation> findByDate(@PathVariable("date") String date) {
+        List<Reservation> r = reservationRepository.findByDate(LocalDate.parse(date));
         return r;
     }
 
