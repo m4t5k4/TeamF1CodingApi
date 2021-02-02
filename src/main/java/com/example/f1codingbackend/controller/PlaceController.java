@@ -104,7 +104,7 @@ public class PlaceController {
     @PutMapping("/places")
     public Place replacePlace(@RequestBody Place updatedPlace) {
         Place retrievedPlace = placeRepository.findById(updatedPlace.getId());
-
+        retrievedPlace.setName(updatedPlace.getName());
         retrievedPlace.setTableLocation(updatedPlace.getTableLocation());
         retrievedPlace.setReservations(updatedPlace.getReservations());
 
