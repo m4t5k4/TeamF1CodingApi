@@ -4,6 +4,7 @@ import com.example.f1codingbackend.model.Place;
 import com.example.f1codingbackend.model.Reservation;
 import com.example.f1codingbackend.repository.PlaceRepository;
 import com.example.f1codingbackend.repository.ReservationRepository;
+import com.example.f1codingbackend.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,9 @@ public class PlaceController {
     PlaceRepository placeRepository;
 
     @Autowired
+    TableRepository tableRepository;
+
+    @Autowired
     private ReservationRepository reservationRepository;
 
     @GetMapping("/places")
@@ -27,69 +31,6 @@ public class PlaceController {
         return placeRepository.findAll();
     }
 
-    @GetMapping("/scenario-zwart")
-    public List<Place>setPlacesZwart() {
-        List <Place> places = placeRepository.findAll();
-        for (Place place : places){
-            place.setActive(false);
-            placeRepository.save(place);
-        }
-        return placeRepository.findAllByActiveTrue();
-    }
-
-    @GetMapping("/scenario-geel")
-    public List<Place>setPlacesGeel() {
-        List <Place> places = placeRepository.findAll();
-        for (Place place : places){
-            if (place.getId() % 4 == 0 )
-            {
-             place.setActive(false);
-            }
-            else {
-                place.setActive(true);
-            }
-            placeRepository.save(place);
-        }
-        return placeRepository.findAllByActiveTrue();
-    }
-
-    @GetMapping("/scenario-groen")
-    public List<Place> setPlacesGroen() {
-        List <Place> places = placeRepository.findAll();
-        for (Place place : places){
-            place.setActive(true);
-            placeRepository.save(place);
-        }
-        return placeRepository.findAllByActiveTrue();
-    }
-
-    @GetMapping("/scenario-oranje")
-    public List<Place> setPlacesOranje() {
-        List <Place> places = placeRepository.findAll();
-        for (Place place : places) {
-            if (place.getId() % 2 == 0) {
-                place.setActive(true);
-            } else {
-                place.setActive(false);
-            }
-            placeRepository.save(place);
-        }
-        return placeRepository.findAllByActiveTrue();
-    }
-
-    @GetMapping("/scenario-rood")
-    public List<Place> setPlacesRood() {
-        List <Place> places = placeRepository.findAll();
-        for (Place place : places) {
-            if (place.getId() % 4 == 0) {
-                place.setActive(true);
-            } else {
-                place.setActive(false);
-            }
-            placeRepository.save(place);
-        }
-        return placeRepository.findAllByActiveTrue();
-    }
 
     @GetMapping("/places/{id}")
     public Place one(@PathVariable Integer id){
