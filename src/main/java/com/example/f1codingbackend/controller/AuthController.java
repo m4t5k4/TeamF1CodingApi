@@ -3,6 +3,7 @@ package com.example.f1codingbackend.controller;
 import com.example.f1codingbackend.model.ERole;
 import com.example.f1codingbackend.model.Role;
 import com.example.f1codingbackend.model.User;
+import com.example.f1codingbackend.payload.request.EditRequest;
 import com.example.f1codingbackend.payload.request.LoginRequest;
 import com.example.f1codingbackend.payload.request.RegisterRequest;
 import com.example.f1codingbackend.payload.response.JwtResponse;
@@ -111,5 +112,49 @@ public class AuthController {
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("Gebruiker succesvol geregistreerd!"));
+    }
+
+    @PutMapping("/edit")
+    public ResponseEntity<?> editUser(@Valid @RequestBody EditRequest editRequest) {
+        if (userRepository.existsByUsername(editRequest.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Gebruikersnaam is al in gebruik!"));
+        }
+
+        User user = new User(editRequest.getFirstname(),
+                editRequest.getLastname(),
+                editRequest.getUsername(),
+                encoder.encode(editRequest.getPassword()));
+
+        Set<String> strRoles = editRequest.getRole();
+        Set<Role> roles = new HashSet<>();
+
+        if (strRoles == null) {
+            Role userRole = roleRepository.findByName(ERole.Employee)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            roles.add(userRole);
+        } else {
+            strRoles.forEach(role -> {
+                switch (role) {
+                    case "admin":
+                        Role adminRole = roleRepository.findByName(ERole.Admin)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(adminRole);
+
+                        break;
+
+                    default:
+                        Role userRole = roleRepository.findByName(ERole.Employee)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(userRole);
+                }
+            });
+        }
+
+        user.setRoles(roles);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(new MessageResponse("Gebruiker succesvol aangepast!"));
     }
 }

@@ -3,6 +3,7 @@ package com.example.f1codingbackend.controller;
 import com.example.f1codingbackend.model.User;
 import com.example.f1codingbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +12,9 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
 
     @GetMapping("/employees")
     public List<User> user()
