@@ -4,6 +4,7 @@ import com.example.f1codingbackend.model.Place;
 import com.example.f1codingbackend.model.Reservation;
 import com.example.f1codingbackend.repository.PlaceRepository;
 import com.example.f1codingbackend.repository.ReservationRepository;
+import com.example.f1codingbackend.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,16 @@ public class PlaceController {
     PlaceRepository placeRepository;
 
     @Autowired
+    TableRepository tableRepository;
+
+    @Autowired
     private ReservationRepository reservationRepository;
 
     @GetMapping("/places")
     public List<Place> getPlaces() {
         return placeRepository.findAll();
     }
+
 
     @GetMapping("/places/{id}")
     public Place one(@PathVariable Integer id){
@@ -40,7 +45,7 @@ public class PlaceController {
     @PutMapping("/places")
     public Place replacePlace(@RequestBody Place updatedPlace) {
         Place retrievedPlace = placeRepository.findById(updatedPlace.getId());
-
+        retrievedPlace.setName(updatedPlace.getName());
         retrievedPlace.setTableLocation(updatedPlace.getTableLocation());
         retrievedPlace.setReservations(updatedPlace.getReservations());
 

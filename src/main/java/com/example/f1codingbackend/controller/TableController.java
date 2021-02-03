@@ -48,6 +48,7 @@ public class TableController {
 
         retrievedTable.setLocation(updatedTable.getLocation());
         retrievedTable.setName(updatedTable.getName());
+        retrievedTable.setZone(updatedTable.getZone());
         retrievedTable.setPlaces(updatedTable.getPlaces());
 
         tableRepository.save(retrievedTable);
