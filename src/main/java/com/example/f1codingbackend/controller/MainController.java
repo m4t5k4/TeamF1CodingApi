@@ -211,7 +211,7 @@ public class MainController {
                 reservation.setStartHour(LocalTime.of(8, 10));
                 reservation.setEndHour(LocalTime.of(19, 00));
                 reservation.setConfirmed(false);
-                reservation.setDescription("Resevatie");
+                reservation.setDescription("Reservatie");
                 List<Place> places = new ArrayList<>();
                 places.add(placeRepository.findById(1));
                 places.add(placeRepository.findById(2));
